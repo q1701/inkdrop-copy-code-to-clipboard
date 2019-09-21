@@ -1,0 +1,15 @@
+{
+  "name": "copy-code-to-clipboard",
+  "main": "./lib/index",
+  "version": "0.0.0",
+  "description": "Add a copy button in the code blocks.",
+  "keywords": [
+  ],
+  "repository": "https://github.com/q1701/inkdrop-copy-code-to-clipboard",
+  "license": "MIT",
+  "engines": {
+    "inkdrop": "^4.x"
+  },
+  "dependencies": {
+  }
+}
