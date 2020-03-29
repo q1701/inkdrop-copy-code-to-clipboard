@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.2.1
+  - Fix version specification of InkDrop
 - 0.2.0
   - Upgrade dependencies
 - 0.1.1

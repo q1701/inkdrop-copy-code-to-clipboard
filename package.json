@@ -10,7 +10,7 @@
   "repository": "https://github.com/q1701/inkdrop-copy-code-to-clipboard",
   "license": "MIT",
   "engines": {
-    "inkdrop": "^4.x >=4.6"
+    "inkdrop": "^4.x"
   },
   "dependencies": {
     "react-innertext": "^1.1.5"
