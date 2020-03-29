@@ -6,8 +6,8 @@ import { clipboard } from 'electron';
 
 export default function createCodeBlockWithCopyButton(OrigPre) {
   // 'Copy' button
-  const CopyCodeToClipboardButton = props => {
-    const handleClick = e => {
+  const CopyCodeToClipboardButton = (props) => {
+    const handleClick = (e) => {
       (async () => {
         await clipboard.writeText(props.text);
       })();
@@ -24,9 +24,9 @@ export default function createCodeBlockWithCopyButton(OrigPre) {
     );
   };
   // Code block with a 'Copy' button
-  const CodeBlockWithCopyButton = props => {
+  const CodeBlockWithCopyButton = (props) => {
     // Original node (built-in <pre> or a React Component)
-    const OrigNode = props => {
+    const OrigNode = (props) => {
       return OrigPre ? (
         <OrigPre {...props}>{props.children}</OrigPre>
       ) : (
