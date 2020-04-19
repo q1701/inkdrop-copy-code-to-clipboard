@@ -9,7 +9,7 @@ export default function createCodeBlockWithCopyButton(OrigPre) {
   const CopyCodeToClipboardButton = (props) => {
     const handleClick = (e) => {
       (async () => {
-        await clipboard.writeText(props.text);
+        await clipboard.writeText(props.text.replace(/\n$/g, ''));
       })();
     };
     return (
