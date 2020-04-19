@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.3.0
+  - Remove line break added incorrectly in the end of copied code (Thanks [gustavotrott](https://github.com/gustavotrott))
 - 0.2.1
   - Fix version specification of InkDrop
 - 0.2.0
