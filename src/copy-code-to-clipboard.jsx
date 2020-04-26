@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import innerText from 'react-innertext';
 import { clipboard } from 'electron';
@@ -7,18 +5,18 @@ import { clipboard } from 'electron';
 export default function createCodeBlockWithCopyButton(OrigPre) {
   // 'Copy' button
   const CopyCodeToClipboardButton = (props) => {
-    const handleClick = (e) => {
-      (async () => {
-        await clipboard.writeText(props.text.replace(/\n$/g, ''));
-      })();
+    const handleClick = (_) => {
+      clipboard.writeText(props.text.replace(/\n$/g, ''));
     };
+    const { label } = props;
     return (
       <>
         <button
+          type="button"
           className="ui button copy-code-to-clipboard-button"
           onClick={handleClick}
         >
-          {props.label}
+          {label}
         </button>
       </>
     );
@@ -27,21 +25,20 @@ export default function createCodeBlockWithCopyButton(OrigPre) {
   const CodeBlockWithCopyButton = (props) => {
     // Original node (built-in <pre> or a React Component)
     const OrigNode = (props) => {
+      const { children } = props;
       return OrigPre ? (
-        <OrigPre {...props}>{props.children}</OrigPre>
+        <OrigPre {...props}>{children}</OrigPre>
       ) : (
-        <pre {...props}>{props.children}</pre>
+        <pre {...props}>{children}</pre>
       );
     };
     // Render
+    const { children } = props;
     return (
       <>
         <OrigNode {...props} className="copy-code-to-clipboard">
-          <CopyCodeToClipboardButton
-            label="Copy"
-            text={innerText(props.children)}
-          />
-          {props.children}
+          <CopyCodeToClipboardButton label="Copy" text={innerText(children)} />
+          {children}
         </OrigNode>
       </>
     );

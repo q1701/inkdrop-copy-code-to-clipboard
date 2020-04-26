@@ -1,10 +1,17 @@
 module.exports = {
+  root: true,
   extends: [
+    'airbnb',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'prettier/react',
   ],
-  plugins: ['prettier', 'react', 'react-hooks'],
+  settings: {
+    react: {
+      version: '16.12',
+    },
+  },
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
@@ -14,11 +21,16 @@ module.exports = {
     es6: true,
     node: true,
   },
+  globals: {
+    inkdrop: 'readonly',
+  },
   rules: {
     'no-console': 'warn',
-    'prettier/prettier': ['error'],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-shadow': 'off',
     'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-props-no-spreading': 'off',
+    'import/no-unresolved': ['error', { ignore: ['inkdrop', 'react'] }],
+    'import/no-extraneous-dependencies': 'off',
   },
 };

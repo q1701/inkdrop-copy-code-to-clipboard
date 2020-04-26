@@ -1,5 +1,3 @@
-'use strict';
-
 import { markdownRenderer } from 'inkdrop';
 import createCodeBlockWithCopyButton from './copy-code-to-clipboard';
 

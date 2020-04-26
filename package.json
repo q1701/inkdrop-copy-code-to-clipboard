@@ -21,17 +21,19 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
-    "@types/react": "^16.9.27",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "babel-eslint": "^10.1.0",
     "core-js": "^3.6.4",
+    "electron": "7.1.13",
     "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "prettier": "^2.0.2"
-  },
-  "prettier": {
-    "singleQuote": true
   }
 }
