@@ -1,19 +1,32 @@
 import { markdownRenderer } from 'inkdrop';
 import createCodeBlockWithCopyButton from './copy-code-to-clipboard';
 
-module.exports = {
-  origPreComponent: null,
-  activate() {
-    this.origPreComponent = markdownRenderer.remarkReactComponents.pre;
-    markdownRenderer.remarkReactComponents.pre = createCodeBlockWithCopyButton(
-      this.origPreComponent
-    );
+export const config = {
+  buttonLabel: {
+    title: 'Button label',
+    type: 'string',
+    default: 'Copy',
   },
-  deactivate() {
-    if (this.origPreComponent) {
-      markdownRenderer.remarkReactComponents.pre = this.origPreComponent;
-    } else {
-      delete markdownRenderer.remarkReactComponents.pre;
-    }
+  shouldInsertNewline: {
+    title: 'Insert a newline after the last line.',
+    type: 'boolean',
+    default: false,
   },
+};
+
+let origPreComponent = null;
+
+export const activate = () => {
+  origPreComponent = markdownRenderer.remarkReactComponents.pre;
+  markdownRenderer.remarkReactComponents.pre = createCodeBlockWithCopyButton(
+    origPreComponent
+  );
+};
+
+export const deactivate = () => {
+  if (origPreComponent) {
+    markdownRenderer.remarkReactComponents.pre = origPreComponent;
+  } else {
+    delete markdownRenderer.remarkReactComponents.pre;
+  }
 };

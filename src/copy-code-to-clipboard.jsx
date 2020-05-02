@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import innerText from 'react-innertext';
 import { clipboard } from 'electron';
 
-export default function createCodeBlockWithCopyButton(OrigPre) {
+const createCodeBlockWithCopyButton = (OrigPre) => {
   // 'Copy' button
   const CopyCodeToClipboardButton = (props) => {
+    const { buttonLabel, shouldInsertNewline, text } = props;
     const handleClick = (_) => {
-      clipboard.writeText(props.text.replace(/\n$/g, ''));
+      clipboard.writeText(
+        shouldInsertNewline ? text : text.replace(/\n$/g, '')
+      );
     };
-    const { label } = props;
     return (
       <>
         <button
@@ -16,16 +18,37 @@ export default function createCodeBlockWithCopyButton(OrigPre) {
           className="ui button copy-code-to-clipboard-button"
           onClick={handleClick}
         >
-          {label}
+          {buttonLabel}
         </button>
       </>
     );
   };
   // Code block with a 'Copy' button
-  const CodeBlockWithCopyButton = (props) => {
+  const CodeBlockWithCopyButton = ({ children, ...props }) => {
+    // Button label
+    const [buttonLabel, setButtonLabel] = useState(
+      inkdrop.config.get('copy-code-to-clipboard.buttonLabel')
+    );
+    useEffect(() => {
+      const disposable = inkdrop.config.onDidChange(
+        'copy-code-to-clipboard.buttonLabel',
+        ({ newValue }) => setButtonLabel(newValue)
+      );
+      return () => disposable.dispose();
+    }, []);
+    // Whether or not to insert a newline after the last line.
+    const [shouldInsertNewline, setShouldInsertNewline] = useState(
+      inkdrop.config.get('copy-code-to-clipboard.shouldInsertNewline')
+    );
+    useEffect(() => {
+      const disposable = inkdrop.config.onDidChange(
+        'copy-code-to-clipboard.shouldInsertNewline',
+        ({ newValue }) => setShouldInsertNewline(newValue)
+      );
+      return () => disposable.dispose();
+    }, []);
     // Original node (built-in <pre> or a React Component)
-    const OrigNode = (props) => {
-      const { children } = props;
+    const OrigNode = ({ children, ...props }) => {
       return OrigPre ? (
         <OrigPre {...props}>{children}</OrigPre>
       ) : (
@@ -33,11 +56,12 @@ export default function createCodeBlockWithCopyButton(OrigPre) {
       );
     };
     // Render
-    const { children } = props;
     return (
       <>
         <OrigNode {...props} className="copy-code-to-clipboard">
-          <CopyCodeToClipboardButton label="Copy" text={innerText(children)} />
+          <CopyCodeToClipboardButton
+            {...{ buttonLabel, shouldInsertNewline, text: innerText(children) }}
+          />
           {children}
         </OrigNode>
       </>
@@ -45,4 +69,6 @@ export default function createCodeBlockWithCopyButton(OrigPre) {
   };
   // Return this component
   return CodeBlockWithCopyButton;
-}
+};
+
+export default createCodeBlockWithCopyButton;
