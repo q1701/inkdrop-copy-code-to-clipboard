@@ -18,7 +18,7 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
           className="ui button copy-code-to-clipboard-button"
           onClick={handleClick}
         >
-          {buttonLabel}
+          <i className="fa fa-clipboard" />
         </button>
       </>
     );
@@ -58,12 +58,14 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
     // Render
     return (
       <>
-        <OrigNode {...props} className="copy-code-to-clipboard">
-          <CopyCodeToClipboardButton
-            {...{ buttonLabel, shouldInsertNewline, text: innerText(children) }}
-          />
+        <div className="copy-code-to-clipboard">
+          <OrigNode {...props}>
           {children}
-        </OrigNode>
+          </OrigNode>
+          <CopyCodeToClipboardButton
+              {...{ buttonLabel, shouldInsertNewline, text: innerText(children) }}
+            />
+        </div>
       </>
     );
   };

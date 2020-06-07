@@ -14,19 +14,19 @@ export const config = {
   },
 };
 
-let origPreComponent = null;
+let origCodeComponent = null;
 
 export const activate = () => {
-  origPreComponent = markdownRenderer.remarkReactComponents.pre;
-  markdownRenderer.remarkReactComponents.pre = createCodeBlockWithCopyButton(
-    origPreComponent
+  origCodeComponent = markdownRenderer.remarkReactComponents.code;
+  markdownRenderer.remarkReactComponents.code = createCodeBlockWithCopyButton(
+    origCodeComponent
   );
 };
 
 export const deactivate = () => {
-  if (origPreComponent) {
-    markdownRenderer.remarkReactComponents.pre = origPreComponent;
+  if (origCodeComponent) {
+    markdownRenderer.remarkReactComponents.code = origCodeComponent;
   } else {
-    delete markdownRenderer.remarkReactComponents.pre;
+    delete markdownRenderer.remarkReactComponents.code;
   }
 };
