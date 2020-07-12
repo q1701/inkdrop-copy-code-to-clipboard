@@ -26,7 +26,10 @@ module.exports = {
   },
   rules: {
     'no-console': 'warn',
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'no-shadow': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',

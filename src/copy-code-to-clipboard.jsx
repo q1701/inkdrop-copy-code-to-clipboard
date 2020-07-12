@@ -5,7 +5,7 @@ import { clipboard } from 'electron';
 const createCodeBlockWithCopyButton = (OrigPre) => {
   // 'Copy' button
   const CopyCodeToClipboardButton = (props) => {
-    const { buttonLabel, shouldInsertNewline, text } = props;
+    const { _buttonLabel, shouldInsertNewline, text } = props;
     const handleClick = (_) => {
       clipboard.writeText(
         shouldInsertNewline ? text : text.replace(/\n$/g, '')
@@ -59,12 +59,10 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
     return (
       <>
         <div className="copy-code-to-clipboard">
-          <OrigNode {...props}>
-          {children}
-          </OrigNode>
+          <OrigNode {...props}>{children}</OrigNode>
           <CopyCodeToClipboardButton
-              {...{ buttonLabel, shouldInsertNewline, text: innerText(children) }}
-            />
+            {...{ buttonLabel, shouldInsertNewline, text: innerText(children) }}
+          />
         </div>
       </>
     );
