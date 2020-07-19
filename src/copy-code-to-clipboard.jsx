@@ -5,12 +5,33 @@ import { clipboard } from 'electron';
 const createCodeBlockWithCopyButton = (OrigPre) => {
   // 'Copy' button
   const CopyCodeToClipboardButton = (props) => {
-    const { _buttonLabel, shouldInsertNewline, text } = props;
+    // Properties
+    const { buttonLabel, shouldInsertNewline, buttonLabelType, text } = props;
+    // Event handler
     const handleClick = (_) => {
-      clipboard.writeText(
-        shouldInsertNewline ? text : text.replace(/\n$/g, '')
-      );
+      if (text.length > 0) {
+        clipboard.writeText(
+          shouldInsertNewline ? text : text.replace(/\n$/g, '')
+        );
+      } else {
+        clipboard.clear();
+      }
     };
+    // Properties => Visibilities of Button Icon and Text
+    const iconVisibility = ['Icon only', 'Both icon and text'].includes(
+      buttonLabelType
+    );
+    const textVisibility = ['Text only', 'Both icon and text'].includes(
+      buttonLabelType
+    );
+    // Visibilities => CSS class
+    const iconClassNames = [];
+    const textClassNames = [];
+    if (!iconVisibility && buttonLabel)
+      iconClassNames.push('copy-code-to-clipboard-button-hide-icon');
+    if (!textVisibility)
+      textClassNames.push('copy-code-to-clipboard-button-hide-text');
+    // Return a button
     return (
       <>
         <button
@@ -18,7 +39,10 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
           className="ui button copy-code-to-clipboard-button"
           onClick={handleClick}
         >
-          <i className="fa fa-clipboard" />
+          <span className={iconClassNames.join(' ')}>
+            <i className="fa fa-clipboard" />
+          </span>
+          <span className={textClassNames.join(' ')}>{buttonLabel}</span>
         </button>
       </>
     );
@@ -47,6 +71,17 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
       );
       return () => disposable.dispose();
     }, []);
+    // How the button label displayed.
+    const [buttonLabelType, setButtonLabelType] = useState(
+      inkdrop.config.get('copy-code-to-clipboard.buttonLabelType')
+    );
+    useEffect(() => {
+      const disposable = inkdrop.config.onDidChange(
+        'copy-code-to-clipboard.buttonLabelType',
+        ({ newValue }) => setButtonLabelType(newValue)
+      );
+      return () => disposable.dispose();
+    }, []);
     // Original node (built-in <pre> or a React Component)
     const OrigNode = ({ children, ...props }) => {
       return OrigPre ? (
@@ -61,7 +96,12 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
         <div className="copy-code-to-clipboard">
           <OrigNode {...props}>{children}</OrigNode>
           <CopyCodeToClipboardButton
-            {...{ buttonLabel, shouldInsertNewline, text: innerText(children) }}
+            {...{
+              buttonLabel,
+              shouldInsertNewline,
+              buttonLabelType,
+              text: innerText(children),
+            }}
           />
         </div>
       </>

@@ -17,7 +17,7 @@ pre .copy-code-to-clipboard {
 div.copy-code-to-clipboard .copy-code-to-clipboard-button.ui.button {
   padding: @v @h @v @h !important;
   margin-left: 0.3rem;
-  display:none;
+  display: none;
 }
 
 pre div.copy-code-to-clipboard .copy-code-to-clipboard-button {
@@ -26,7 +26,15 @@ pre div.copy-code-to-clipboard .copy-code-to-clipboard-button {
   right: 0;
 }
 
-pre:hover div.copy-code-to-clipboard .copy-code-to-clipboard-button.ui.button, 
+pre:hover div.copy-code-to-clipboard .copy-code-to-clipboard-button.ui.button,
 div.copy-code-to-clipboard:hover .copy-code-to-clipboard-button.ui.button {
-  display:inline-block;
+  display: inline-block;
+}
+
+code ~ button .copy-code-to-clipboard-button-hide-icon {
+  display: none;
+}
+
+code ~ button .copy-code-to-clipboard-button-hide-text {
+  display: none;
 }
