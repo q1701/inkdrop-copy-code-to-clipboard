@@ -10,10 +10,12 @@ ipm install copy-code-to-clipboard
 
 ## Example
 
-![Example](https://github.com/q1701/inkdrop-copy-code-to-clipboard/raw/master/docs/images/example.png)
+![Example](https://github.com/q1701/inkdrop-copy-code-to-clipboard/raw/master/docs/images/example.gif)
 
 ## Changelog
 
+- 0.5.0
+  - Support coping text in inline code, not only code blocks. And, The copy icon is shown only on hover the code. (Thanks [gustavotrott](https://github.com/gustavotrott) !!!)
 - 0.4.0
   - Make button labels and copy behavior configurable
 - 0.3.0
