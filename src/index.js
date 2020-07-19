@@ -9,24 +9,32 @@ export const config = {
   },
   shouldInsertNewline: {
     title: 'Insert a newline after the last line.',
+    description: 'Whether or not to insert a newline after the last line.',
     type: 'boolean',
     default: false,
   },
+  buttonLabelType: {
+    title: 'Button label type',
+    description: 'How the button label displayed.',
+    type: 'string',
+    default: 'Icon only',
+    enum: ['Icon only', 'Text only', 'Both icon and text'],
+  },
 };
 
-let origPreComponent = null;
+let origCodeComponent = null;
 
 export const activate = () => {
-  origPreComponent = markdownRenderer.remarkReactComponents.pre;
-  markdownRenderer.remarkReactComponents.pre = createCodeBlockWithCopyButton(
-    origPreComponent
+  origCodeComponent = markdownRenderer.remarkReactComponents.code;
+  markdownRenderer.remarkReactComponents.code = createCodeBlockWithCopyButton(
+    origCodeComponent
   );
 };
 
 export const deactivate = () => {
-  if (origPreComponent) {
-    markdownRenderer.remarkReactComponents.pre = origPreComponent;
+  if (origCodeComponent) {
+    markdownRenderer.remarkReactComponents.code = origCodeComponent;
   } else {
-    delete markdownRenderer.remarkReactComponents.pre;
+    delete markdownRenderer.remarkReactComponents.code;
   }
 };
