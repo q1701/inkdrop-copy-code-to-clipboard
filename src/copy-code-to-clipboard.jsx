@@ -93,8 +93,8 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
     // Render
     return (
       <>
+        <OrigNode {...props}>{children}</OrigNode>
         <div className="copy-code-to-clipboard">
-          <OrigNode {...props}>{children}</OrigNode>
           <CopyCodeToClipboardButton
             {...{
               buttonLabel,
