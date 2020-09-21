@@ -9,7 +9,7 @@ module.exports = {
   ],
   settings: {
     react: {
-      version: '16.12',
+      version: '16.13',
     },
   },
   parser: 'babel-eslint',
@@ -33,7 +33,7 @@ module.exports = {
     'no-shadow': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'import/no-unresolved': ['error', { ignore: ['inkdrop', 'react'] }],
+    'import/no-unresolved': ['error', { ignore: ['inkdrop', 'react', 'electron'] }],
     'import/no-extraneous-dependencies': 'off',
   },
 };
