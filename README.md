@@ -13,7 +13,8 @@ ipm install copy-code-to-clipboard
 ![Example](https://github.com/q1701/inkdrop-copy-code-to-clipboard/raw/master/docs/images/example.gif)
 
 ## Changelog
-
+- 0.6.0
+  - Fixed bug occuring when some chart drawing plugin is enabled (Thanks [elpnt](https://github.com/elpnt) !)
 - 0.5.0
   - Support coping text in inline code, not only code blocks. And, The copy icon is shown only on hover the code. (Thanks [gustavotrott](https://github.com/gustavotrott) !!!)
 - 0.4.0
