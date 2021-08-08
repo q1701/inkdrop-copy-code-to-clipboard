@@ -26,9 +26,8 @@ let origCodeComponent = null;
 
 export const activate = () => {
   origCodeComponent = markdownRenderer.remarkReactComponents.code;
-  markdownRenderer.remarkReactComponents.code = createCodeBlockWithCopyButton(
-    origCodeComponent
-  );
+  markdownRenderer.remarkReactComponents.code =
+    createCodeBlockWithCopyButton(origCodeComponent);
 };
 
 export const deactivate = () => {
