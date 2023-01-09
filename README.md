@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.6.2
+  - Upgrade dependencies
 - 0.6.1
   - Upgrade dependencies
 - 0.6.0
