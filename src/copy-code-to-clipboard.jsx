@@ -2,7 +2,27 @@ import React, { useState, useEffect } from 'react';
 import innerText from 'react-innertext';
 import { clipboard } from 'electron';
 
-const createCodeBlockWithCopyButton = (OrigPre) => {
+const createRelativeContainer = (OrigPre) => {
+  const RelativeContainer = ({ children, ...props }) => {
+    const OrigNode = ({ children, ...props }) => {
+      return OrigPre ? (
+        <OrigPre {...props}>{children}</OrigPre>
+      ) : (
+        <pre {...props}>{children}</pre>
+      );
+    };
+    return (
+      <>
+        <div className="copy-code-to-clipboard">
+          <OrigNode {...props}>{children}</OrigNode>
+        </div>
+      </>
+    );
+  };
+  return RelativeContainer;
+};
+
+const createCodeBlockWithCopyButton = (OrigCode) => {
   // 'Copy' button
   const CopyCodeToClipboardButton = (props) => {
     // Properties
@@ -82,28 +102,26 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
       );
       return () => disposable.dispose();
     }, []);
-    // Original node (built-in <pre> or a React Component)
+    // Original node (built-in <code> or a React Component)
     const OrigNode = ({ children, ...props }) => {
-      return OrigPre ? (
-        <OrigPre {...props}>{children}</OrigPre>
+      return OrigCode ? (
+        <OrigCode {...props}>{children}</OrigCode>
       ) : (
-        <pre {...props}>{children}</pre>
+        <code {...props}>{children}</code>
       );
     };
     // Render
     return (
       <>
         <OrigNode {...props}>{children}</OrigNode>
-        <div className="copy-code-to-clipboard">
-          <CopyCodeToClipboardButton
-            {...{
-              buttonLabel,
-              shouldInsertNewline,
-              buttonLabelType,
-              text: innerText(children),
-            }}
-          />
-        </div>
+        <CopyCodeToClipboardButton
+          {...{
+            buttonLabel,
+            shouldInsertNewline,
+            buttonLabelType,
+            text: innerText(children),
+          }}
+        />
       </>
     );
   };
@@ -111,4 +129,4 @@ const createCodeBlockWithCopyButton = (OrigPre) => {
   return CodeBlockWithCopyButton;
 };
 
-export default createCodeBlockWithCopyButton;
+export { createRelativeContainer, createCodeBlockWithCopyButton };
