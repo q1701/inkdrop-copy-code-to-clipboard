@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.7.0
+  - Prevent button from horizontally scrolling
 - 0.6.2
   - Upgrade dependencies
 - 0.6.1
