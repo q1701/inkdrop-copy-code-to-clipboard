@@ -1,5 +1,8 @@
 import { markdownRenderer } from 'inkdrop';
-import createCodeBlockWithCopyButton from './copy-code-to-clipboard';
+import {
+  createRelativeContainer,
+  createCodeBlockWithCopyButton,
+} from './copy-code-to-clipboard';
 
 export const config = {
   buttonLabel: {
@@ -22,15 +25,24 @@ export const config = {
   },
 };
 
+let origPreComponent = null;
 let origCodeComponent = null;
 
 export const activate = () => {
+  origPreComponent = markdownRenderer.remarkReactComponents.pre;
+  markdownRenderer.remarkReactComponents.pre =
+    createRelativeContainer(origPreComponent);
   origCodeComponent = markdownRenderer.remarkReactComponents.code;
   markdownRenderer.remarkReactComponents.code =
     createCodeBlockWithCopyButton(origCodeComponent);
 };
 
 export const deactivate = () => {
+  if (origPreComponent) {
+    markdownRenderer.remarkReactComponents.pre = origPreComponent;
+  } else {
+    delete markdownRenderer.remarkReactComponents.pre;
+  }
   if (origCodeComponent) {
     markdownRenderer.remarkReactComponents.code = origCodeComponent;
   } else {

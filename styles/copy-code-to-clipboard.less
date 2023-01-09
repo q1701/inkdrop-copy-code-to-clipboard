@@ -1,33 +1,23 @@
 @v: 0.25em;
 @h: 0.5em;
 
-.copy-code-to-clipboard {
-  position: relative;
-  display: inline;
-}
-
-pre {
+div.copy-code-to-clipboard {
   position: relative;
 }
 
-pre .copy-code-to-clipboard {
-  position: unset;
-}
-
-div.copy-code-to-clipboard .copy-code-to-clipboard-button.ui.button {
-  padding: @v @h @v @h !important;
-  margin-left: 0.3rem;
-  display: none;
-}
-
-pre div.copy-code-to-clipboard .copy-code-to-clipboard-button {
+button.copy-code-to-clipboard-button {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-pre:hover div.copy-code-to-clipboard .copy-code-to-clipboard-button.ui.button,
-div.copy-code-to-clipboard:hover .copy-code-to-clipboard-button.ui.button {
+button.copy-code-to-clipboard-button.ui.button {
+  padding: @v @h @v @h !important;
+  margin-left: 0.3rem;
+  display: none;
+}
+
+div.copy-code-to-clipboard:hover button.copy-code-to-clipboard-button.ui.button {
   display: inline-block;
 }
 
