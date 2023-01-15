@@ -1,11 +1,11 @@
 @v: 0.25em;
 @h: 0.5em;
 
-div.copy-code-to-clipboard {
+div.copy-code-to-clipboard-block-container {
   position: relative;
 }
 
-button.copy-code-to-clipboard-button {
+div.copy-code-to-clipboard-block-container button.copy-code-to-clipboard-button {
   position: absolute;
   top: 0;
   right: 0;
@@ -17,8 +17,12 @@ button.copy-code-to-clipboard-button.ui.button {
   display: none;
 }
 
-div.copy-code-to-clipboard:hover button.copy-code-to-clipboard-button.ui.button {
+div.copy-code-to-clipboard-block-container:hover button.copy-code-to-clipboard-button.ui.button {
   display: inline-block;
+}
+
+*:not(.copy-code-to-clipboard-block) span.copy-code-to-clipboard-inline-container:hover button.copy-code-to-clipboard-button.ui.button {
+  display: inline;
 }
 
 span.copy-code-to-clipboard-button-hide-icon {

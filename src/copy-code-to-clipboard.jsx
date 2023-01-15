@@ -13,7 +13,7 @@ const createRelativeContainer = (OrigPre) => {
     };
     return (
       <>
-        <div className="copy-code-to-clipboard">
+        <div className="copy-code-to-clipboard-block-container">
           <OrigNode {...props}>{children}</OrigNode>
         </div>
       </>
@@ -112,7 +112,7 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
     };
     // Render
     return (
-      <>
+      <span className="copy-code-to-clipboard-inline-container">
         <OrigNode {...props}>{children}</OrigNode>
         <CopyCodeToClipboardButton
           {...{
@@ -122,7 +122,7 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
             text: innerText(children),
           }}
         />
-      </>
+      </span>
     );
   };
   // Return this component

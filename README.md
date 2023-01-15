@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.8.0
+  - Restored the feature 'Coping text in inline code' which was mistakenly removed in a previous version. (Sorry [gustavotrott](https://github.com/gustavotrott))
 - 0.7.0
   - Prevent button from horizontally scrolling
 - 0.6.2
