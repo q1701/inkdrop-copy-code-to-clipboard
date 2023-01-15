@@ -23,6 +23,13 @@ export const config = {
     default: 'Icon only',
     enum: ['Icon only', 'Text only', 'Both icon and text'],
   },
+  enableInlineCodeCopy: {
+    title: 'Enable copy button in inline code.',
+    description:
+      'Whether or not to show a copy button in the inline code block.',
+    type: 'boolean',
+    default: true,
+  },
 };
 
 let origPreComponent = null;

@@ -102,6 +102,17 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
       );
       return () => disposable.dispose();
     }, []);
+    // Enable copy button in inline code.
+    const [enableInlineCodeCopy, setEnableInlineCodeCopy] = useState(
+      inkdrop.config.get('copy-code-to-clipboard.enableInlineCodeCopy')
+    );
+    useEffect(() => {
+      const disposable = inkdrop.config.onDidChange(
+        'copy-code-to-clipboard.enableInlineCodeCopy',
+        ({ newValue }) => setEnableInlineCodeCopy(newValue)
+      );
+      return () => disposable.dispose();
+    }, []);
     // Original node (built-in <code> or a React Component)
     const OrigNode = ({ children, ...props }) => {
       return OrigCode ? (
@@ -111,8 +122,11 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
       );
     };
     // Render
+    const inlineContainerClassName = enableInlineCodeCopy
+      ? 'copy-code-to-clipboard-inline-container'
+      : null;
     return (
-      <span className="copy-code-to-clipboard-inline-container">
+      <span className={inlineContainerClassName}>
         <OrigNode {...props}>{children}</OrigNode>
         <CopyCodeToClipboardButton
           {...{
