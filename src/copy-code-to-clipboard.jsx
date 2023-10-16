@@ -60,7 +60,7 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
           onClick={handleClick}
         >
           <span className={iconClassNames.join(' ')}>
-            <i className="fa fa-clipboard" />
+            <i className="icon clipboard outline" />
           </span>
           <span className={textClassNames.join(' ')}>{buttonLabel}</span>
         </button>
