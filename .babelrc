@@ -3,7 +3,7 @@
     [
       "@babel/preset-env",
       {
-        "targets": { "electron": "28.2.6" },
+        "targets": { "electron": "31.7.7" },
         "useBuiltIns": "usage",
         "corejs": 3
       }
