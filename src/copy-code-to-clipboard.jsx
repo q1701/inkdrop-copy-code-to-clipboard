@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import innerText from 'react-innertext';
 import { clipboard } from 'electron';
 
@@ -31,7 +31,7 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
     const handleClick = (_) => {
       if (text.length > 0) {
         clipboard.writeText(
-          shouldInsertNewline ? text : text.replace(/\n$/g, '')
+          shouldInsertNewline ? text : text.replace(/\n$/g, ''),
         );
       } else {
         clipboard.clear();
@@ -39,10 +39,10 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
     };
     // Properties => Visibilities of Button Icon and Text
     const iconVisibility = ['Icon only', 'Both icon and text'].includes(
-      buttonLabelType
+      buttonLabelType,
     );
     const textVisibility = ['Text only', 'Both icon and text'].includes(
-      buttonLabelType
+      buttonLabelType,
     );
     // Visibilities => CSS class
     const iconClassNames = [];
@@ -71,45 +71,45 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
   const CodeBlockWithCopyButton = ({ children, ...props }) => {
     // Button label
     const [buttonLabel, setButtonLabel] = useState(
-      inkdrop.config.get('copy-code-to-clipboard.buttonLabel')
+      inkdrop.config.get('copy-code-to-clipboard.buttonLabel'),
     );
     useEffect(() => {
       const disposable = inkdrop.config.onDidChange(
         'copy-code-to-clipboard.buttonLabel',
-        ({ newValue }) => setButtonLabel(newValue)
+        ({ newValue }) => setButtonLabel(newValue),
       );
       return () => disposable.dispose();
     }, []);
     // Whether or not to insert a newline after the last line.
     const [shouldInsertNewline, setShouldInsertNewline] = useState(
-      inkdrop.config.get('copy-code-to-clipboard.shouldInsertNewline')
+      inkdrop.config.get('copy-code-to-clipboard.shouldInsertNewline'),
     );
     useEffect(() => {
       const disposable = inkdrop.config.onDidChange(
         'copy-code-to-clipboard.shouldInsertNewline',
-        ({ newValue }) => setShouldInsertNewline(newValue)
+        ({ newValue }) => setShouldInsertNewline(newValue),
       );
       return () => disposable.dispose();
     }, []);
     // How the button label displayed.
     const [buttonLabelType, setButtonLabelType] = useState(
-      inkdrop.config.get('copy-code-to-clipboard.buttonLabelType')
+      inkdrop.config.get('copy-code-to-clipboard.buttonLabelType'),
     );
     useEffect(() => {
       const disposable = inkdrop.config.onDidChange(
         'copy-code-to-clipboard.buttonLabelType',
-        ({ newValue }) => setButtonLabelType(newValue)
+        ({ newValue }) => setButtonLabelType(newValue),
       );
       return () => disposable.dispose();
     }, []);
     // Enable copy button in inline code.
     const [enableInlineCodeCopy, setEnableInlineCodeCopy] = useState(
-      inkdrop.config.get('copy-code-to-clipboard.enableInlineCodeCopy')
+      inkdrop.config.get('copy-code-to-clipboard.enableInlineCodeCopy'),
     );
     useEffect(() => {
       const disposable = inkdrop.config.onDidChange(
         'copy-code-to-clipboard.enableInlineCodeCopy',
-        ({ newValue }) => setEnableInlineCodeCopy(newValue)
+        ({ newValue }) => setEnableInlineCodeCopy(newValue),
       );
       return () => disposable.dispose();
     }, []);
