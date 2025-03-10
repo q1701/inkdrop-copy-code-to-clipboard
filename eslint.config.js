@@ -4,6 +4,7 @@ import babelParser from '@babel/eslint-parser';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   {
@@ -69,4 +70,5 @@ export default [
       'import/no-extraneous-dependencies': 'off',
     },
   },
+  eslintConfigPrettier,
 ];
