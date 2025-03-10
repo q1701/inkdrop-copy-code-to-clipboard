@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.11.0
+  - Fix missing icon display
 - 0.10.0
   - Fix an issue where enabling this plugin prevents code block wrapping
 - 0.9.0
