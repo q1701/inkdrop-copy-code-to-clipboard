@@ -7,7 +7,7 @@ import importPlugin from 'eslint-plugin-import';
 
 export default [
   {
-    ignores: ['node_modules', 'lib'],
+    ignores: ['lib'],
   },
   eslint.configs.recommended,
   {
