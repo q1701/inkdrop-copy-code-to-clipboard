@@ -14,6 +14,8 @@ ipm install copy-code-to-clipboard
 
 ## Changelog
 
+- 0.12.0
+  - Fix missing line numbers in code-block-line-number plugin
 - 0.11.0
   - Fix missing icon display
 - 0.10.0
