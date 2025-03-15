@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import innerText from 'react-innertext';
 import { clipboard } from 'electron';
-import { FaClipboard } from 'react-icons/fa';
+import { FaRegClipboard as ClipboardIcon } from 'react-icons/fa6';
 
 const createRelativeContainer = (OrigPre) => {
   const RelativeContainer = ({ children, ...props }) => {
@@ -61,7 +61,7 @@ const createCodeBlockWithCopyButton = (OrigCode) => {
           onClick={handleClick}
         >
           <span className={iconClassNames.join(' ')}>
-            <FaClipboard />
+            <ClipboardIcon className="codeblock-icon-clipboard" />
           </span>
           <span className={textClassNames.join(' ')}>{buttonLabel}</span>
         </button>
